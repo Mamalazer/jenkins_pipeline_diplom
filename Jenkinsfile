@@ -44,7 +44,7 @@ pipeline {
                             "enableChart": true
                         },
                         "telegram": {
-                            "token": "5973056427:AAGOEgQY1unZ8hilj4FYA7nNMV-zyewD3z8",
+                            "token": "${env.TELEGRAM_TOKEN}",
                             "chat": "-1001729665881",
                             "replyTo": ""
                         }
