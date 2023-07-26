@@ -55,10 +55,7 @@ pipeline {
             }    
             steps {
                 script {
-                    Telegram telegram = new Telegram()
-                    System.out.println("-------------------------------------------------")
-                    System.out.println(telegram.telegramMessageBody)
-                    System.out.println("-------------------------------------------------")
+                    println(Telegram.telegramMessageBody)
                     writeFile file: 'src/test/resources/telegram.json', text: "${TELEGRAM}"
                 }
             }

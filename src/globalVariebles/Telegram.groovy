@@ -1,4 +1,4 @@
-public String telegramMessageBody = """{
+public static String telegramMessageBody = """{
                     "base": {
                         "project": "${env.JOB_BASE_NAME}",
                         "environment": "${params.ENVIRONMENT}",
