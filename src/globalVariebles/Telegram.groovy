@@ -1,4 +1,4 @@
-static String telegramMessageBody = "{
+static String telegramMessageBody = """{
                     "base": {
                         "project": "${env.JOB_BASE_NAME}",
                         "environment": "${params.ENVIRONMENT}",
@@ -13,4 +13,4 @@ static String telegramMessageBody = "{
                         "chat": "-1001729665881",
                         "replyTo": ""
                     }
-                }"
+                }"""
