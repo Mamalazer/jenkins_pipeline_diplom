@@ -1,6 +1,3 @@
-@Library('jenkins_pipeline_diplom') _
-import globalVariebles.Telegram
-
 pipeline {
     agent any
     
@@ -55,7 +52,6 @@ pipeline {
             }    
             steps {
                 script {
-                    println(Telegram.telegramMessageBody)
                     writeFile file: 'src/test/resources/telegram.json', text: "${TELEGRAM}"
                 }
             }
