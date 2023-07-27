@@ -75,28 +75,13 @@ pipeline {
                 -DandroidVersion="${params.ANDROID_VERSION}" \
                 -DbuildName=${env.JOB_BASE_NAME}"""
             }
-        }        
-        stage('Report') {
-            steps {
-                echo 'Start generate allure report'
-            }
-            post {
-                always {
-                    allure includeProperties: false, jdk: '', results: [[path: 'build/allure-results']]
-                }
-            }
+        }                
+    }
+
+    post {
+        always {
+            allure includeProperties: false, jdk: '', results: [[path: 'build/allure-results']]
+            sh 'java -DconfigFile=src/test/resources/telegram.json -jar src/test/resources/allure-notifications-4.2.1.jar'
         }
-        stage('Send report to telegram') {
-            steps {
-                echo 'Sending report to telegram'
-            }
-            post {
-                always {
-                    script {
-                        sh 'java -DconfigFile=src/test/resources/telegram.json -jar src/test/resources/allure-notifications-4.2.1.jar'
-                    }
-                }
-            }
-        }        
     }
 }
