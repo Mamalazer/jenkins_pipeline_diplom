@@ -15,7 +15,7 @@ pipeline {
     } 
     
     triggers {
-        cron 'H/30 * * * *'
+        cron 'H/30 * * * * %TAG=Api;THREADS=2'
     }
     
     parameters {
@@ -32,31 +32,11 @@ pipeline {
     }
     
     stages {
-        stage('Prepare telegram report') {
-            environment {
-                TELEGRAM = """
-                    {
-                        "base": {
-                            "project": "${env.JOB_BASE_NAME}",
-                            "environment": "qa.guru",
-                            "comment": "создатель сборки @Mamalazer",
-                            "reportLink": "${env.BUILD_URL}",
-                            "language": "en",
-                            "allureFolder": "allure-report/",
-                            "enableChart": true
-                        },
-                        "telegram": {
-                            "token": "${env.TELEGRAM_TOKEN}",
-                            "chat": "-1001729665881",
-                            "replyTo": ""
-                        }
-                    }"""
-            }    
+        stage('Prepare telegram report') { 
             steps {
                 script {
                     String body = telegramMessageBody.getTelegramBody()
-                    echo "${body}"
-                    writeFile file: 'src/test/resources/telegram.json', text: "${TELEGRAM}"
+                    writeFile file: 'src/test/resources/telegram.json', text: "${body}"
                 }
             }
         }
