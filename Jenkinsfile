@@ -15,7 +15,7 @@ pipeline {
     } 
     
     triggers {
-        cron 'H/30 * * * * %TAG=Api;THREADS=2'
+        cron 'H/30 * * * *'
     }
     
     parameters {
