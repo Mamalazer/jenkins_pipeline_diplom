@@ -19,5 +19,5 @@ String telegramBody = """
                     }"""
 
 def getTelegramBody() {
-    return ${telegramBody}
+    return "${telegramBody}"
 }
