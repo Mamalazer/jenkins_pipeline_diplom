@@ -55,7 +55,7 @@ pipeline {
             steps {
                 script {
                     String body = telegramMessageBody.getTelegramBody()
-                    echo ${body}
+                    echo "${body}"
                     writeFile file: 'src/test/resources/telegram.json', text: "${TELEGRAM}"
                 }
             }
