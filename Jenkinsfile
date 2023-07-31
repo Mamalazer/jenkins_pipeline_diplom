@@ -1,4 +1,4 @@
-@Library('jenkins_pipeline_diplom') import io.example.Person
+@Library('jenkins_pipeline_diplom') _
 
 pipeline {
     agent any
@@ -54,8 +54,8 @@ pipeline {
             }    
             steps {
                 script {
-                    def person = new Person('Valera', 27)
-                    echo person.getAbout()
+                    String body = getTelegramBody()
+                    echo ${body}
                     writeFile file: 'src/test/resources/telegram.json', text: "${TELEGRAM}"
                 }
             }
