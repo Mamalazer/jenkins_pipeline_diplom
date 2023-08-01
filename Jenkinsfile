@@ -14,10 +14,6 @@ pipeline {
         timestamps()
     } 
     
-    triggers {
-        cron 'H/30 * * * *'
-    }
-    
     parameters {
         string(name: "ENVIRONMENT", defaultValue: "test", trim: true, description: "Environment")
         string(name: "TAG", trim: true, description: "Тэг тестов для запуска. Если поле не заполнено, то осуществится запуск всех тестов проекта")
@@ -29,6 +25,12 @@ pipeline {
         string(name: "FRONT_URL", defaultValue: "https://www.saucedemo.com", trim: true, description: "URL фронта")
         string(name: "ANDROID_DEVICE", defaultValue: "Google Pixel 3", trim: true, description: "Имя Android устройства")
         string(name: "ANDROID_VERSION", defaultValue: "9.0", trim: true, description: "Версия Android")
+    }
+
+    triggers {
+        parameterizedCron('''
+            H/30 * * * * %TAG=Api;THREADS=2
+        ''')
     }
     
     stages {
